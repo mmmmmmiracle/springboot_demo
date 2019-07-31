@@ -1,0 +1,26 @@
+<header-tpl th:fragment="header-tpl">
+<div class="page-header navbar navbar-fixed-top">
+<div class="page-header-inner ">
+    <div class="page-logo">
+        <a href="/index.php">
+            <img src="/static/assets/layouts/layout/img/logo_blue.png" alt="logo" class="logo-default" /> </a>
+            <div class="menu-toggler sidebar-toggler">
+                <span></span>
+            </div>
+        </div>
+        <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+            <span></span>
+        </a>
+        <div class="top-menu">
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown dropdown-quick-sidebar-toggler">
+                    <a href="/logout" class="dropdown-toggle">
+                        <i class="icon-logout"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clearfix"> </div>            
+</header-tpl>

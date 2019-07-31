@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyd.mercury.dao.AuthorityPositionRelationMapper">
+  <resultMap id="BaseResultMap" type="com.hyd.mercury.entity.AuthorityPositionRelation">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="position_uuid" jdbcType="VARCHAR" property="positionUuid" />
+    <result column="is_hidden" jdbcType="INTEGER" property="isHidden" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hyd.mercury.entity.AuthorityPositionRelation">
+    <result column="rules" jdbcType="LONGVARCHAR" property="rules" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, position_uuid, is_hidden, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    rules
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from guoshun_authority_position_relation
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from guoshun_authority_position_relation
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hyd.mercury.entity.AuthorityPositionRelation">
+    insert into guoshun_authority_position_relation (uuid, position_uuid, is_hidden, 
+      create_time, rules)
+    values (#{uuid,jdbcType=VARCHAR}, #{positionUuid,jdbcType=VARCHAR}, #{isHidden,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=INTEGER}, #{rules,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.mercury.entity.AuthorityPositionRelation">
+    insert into guoshun_authority_position_relation
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="positionUuid != null">
+        position_uuid,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="rules != null">
+        rules,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="positionUuid != null">
+        #{positionUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="rules != null">
+        #{rules,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.mercury.entity.AuthorityPositionRelation">
+    update guoshun_authority_position_relation
+    <set>
+      <if test="positionUuid != null">
+        position_uuid = #{positionUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="rules != null">
+        rules = #{rules,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hyd.mercury.entity.AuthorityPositionRelation">
+    update guoshun_authority_position_relation
+    set position_uuid = #{positionUuid,jdbcType=VARCHAR},
+      is_hidden = #{isHidden,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER},
+      rules = #{rules,jdbcType=LONGVARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.mercury.entity.AuthorityPositionRelation">
+    update guoshun_authority_position_relation
+    set position_uuid = #{positionUuid,jdbcType=VARCHAR},
+      is_hidden = #{isHidden,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

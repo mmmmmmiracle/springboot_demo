@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyd.mercury.dao.AuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.hyd.mercury.entity.Authority">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="auth_name" jdbcType="VARCHAR" property="authName" />
+    <result column="mnemonic_code" jdbcType="VARCHAR" property="mnemonicCode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="group" jdbcType="VARCHAR" property="group" />
+    <result column="condition" jdbcType="VARCHAR" property="condition" />
+    <result column="is_stop" jdbcType="INTEGER" property="isStop" />
+    <result column="is_screen" jdbcType="INTEGER" property="isScreen" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="is_hidden" jdbcType="INTEGER" property="isHidden" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="sort" jdbcType="VARCHAR" property="sort" />
+    <result column="is_display" jdbcType="INTEGER" property="isDisplay" />
+    <result column="icon_name" jdbcType="VARCHAR" property="iconName" />
+    <result column="link" jdbcType="VARCHAR" property="link" />
+    <result column="module_uuid" jdbcType="VARCHAR" property="moduleUuid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, code, auth_name, mnemonic_code, name, group, condition, is_stop, is_screen, 
+    remark, create_time, is_hidden, model, sort, is_display, icon_name, link, module_uuid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from guoshun_authority
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from guoshun_authority
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hyd.mercury.entity.Authority">
+    insert into guoshun_authority (uuid, code, auth_name, 
+      mnemonic_code, name, group, 
+      condition, is_stop, is_screen, 
+      remark, create_time, is_hidden, 
+      model, sort, is_display, 
+      icon_name, link, module_uuid
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{authName,jdbcType=VARCHAR}, 
+      #{mnemonicCode,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{group,jdbcType=VARCHAR}, 
+      #{condition,jdbcType=VARCHAR}, #{isStop,jdbcType=INTEGER}, #{isScreen,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{isHidden,jdbcType=INTEGER}, 
+      #{model,jdbcType=VARCHAR}, #{sort,jdbcType=VARCHAR}, #{isDisplay,jdbcType=INTEGER}, 
+      #{iconName,jdbcType=VARCHAR}, #{link,jdbcType=VARCHAR}, #{moduleUuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.mercury.entity.Authority">
+    insert into guoshun_authority
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="authName != null">
+        auth_name,
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="group != null">
+        group,
+      </if>
+      <if test="condition != null">
+        condition,
+      </if>
+      <if test="isStop != null">
+        is_stop,
+      </if>
+      <if test="isScreen != null">
+        is_screen,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="isDisplay != null">
+        is_display,
+      </if>
+      <if test="iconName != null">
+        icon_name,
+      </if>
+      <if test="link != null">
+        link,
+      </if>
+      <if test="moduleUuid != null">
+        module_uuid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="authName != null">
+        #{authName,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonicCode != null">
+        #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null">
+        #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null">
+        #{isStop,jdbcType=INTEGER},
+      </if>
+      <if test="isScreen != null">
+        #{isScreen,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="isDisplay != null">
+        #{isDisplay,jdbcType=INTEGER},
+      </if>
+      <if test="iconName != null">
+        #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUuid != null">
+        #{moduleUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.mercury.entity.Authority">
+    update guoshun_authority
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="authName != null">
+        auth_name = #{authName,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="group != null">
+        group = #{group,jdbcType=VARCHAR},
+      </if>
+      <if test="condition != null">
+        condition = #{condition,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null">
+        is_stop = #{isStop,jdbcType=INTEGER},
+      </if>
+      <if test="isScreen != null">
+        is_screen = #{isScreen,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="isDisplay != null">
+        is_display = #{isDisplay,jdbcType=INTEGER},
+      </if>
+      <if test="iconName != null">
+        icon_name = #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="link != null">
+        link = #{link,jdbcType=VARCHAR},
+      </if>
+      <if test="moduleUuid != null">
+        module_uuid = #{moduleUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.mercury.entity.Authority">
+    update guoshun_authority
+    set code = #{code,jdbcType=VARCHAR},
+      auth_name = #{authName,jdbcType=VARCHAR},
+      mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      group = #{group,jdbcType=VARCHAR},
+      condition = #{condition,jdbcType=VARCHAR},
+      is_stop = #{isStop,jdbcType=INTEGER},
+      is_screen = #{isScreen,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      is_hidden = #{isHidden,jdbcType=INTEGER},
+      model = #{model,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=VARCHAR},
+      is_display = #{isDisplay,jdbcType=INTEGER},
+      icon_name = #{iconName,jdbcType=VARCHAR},
+      link = #{link,jdbcType=VARCHAR},
+      module_uuid = #{moduleUuid,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectAuthorityByParam" resultType="com.hyd.mercury.entity.Authority">
+  	select 
+  		a.*,m.name AS module_name
+  	from guoshun_authority a
+  	join guoshun_module m on m.uuid = a.module_uuid and m.is_hidden = 0 and m.is_stop = 0
+  	<if test="type != 'authority_list'">
+  		join guoshun_authority_position_relation apr on apr.authority_uuid = a.uuid and apr.is_hidden = 0
+  		join guoshun_position p on p.uuid = apr.position_uuid and p.is_hidden = 0 and p.is_stop = 0
+  		join guoshun_user u on u.position_uuid = p.uuid
+  	</if>
+  	where 1=1
+  	<if test="useruuid != null">
+  		and u.uuid = #{useruuid,jdbcType=VARCHAR}
+  	</if>
+  	<if test="authority.isHidden != null">
+  		and a.is_hidden = #{authority.isHidden,jdbcType=INTEGER}
+  	</if>
+  	<if test="authority.isStop != null">
+  		and a.is_stop = #{authority.isStop,jdbcType=INTEGER}
+  	</if>
+  	<if test="authority.isDisplay != null">
+  		and a.is_display = #{authority.isDisplay,jdbcType=INTEGER}
+  	</if>
+  	<if test="authority.model != null">
+  		and a.model = #{authority.model,jdbcType=VARCHAR}
+  	</if>
+  	<if test="authority.link != null">
+  		and a.link = #{authority.link,jdbcType=VARCHAR}
+  	</if>
+  	<choose>
+  		<when test="order != null">
+  			order by #{order,jdbcType=VARCHAR}
+  		</when>
+  		<otherwise>
+  			order by ag.sort ASC,a.code ASC
+  		</otherwise>
+  	</choose>
+  </select>
+</mapper>

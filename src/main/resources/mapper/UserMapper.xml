@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyd.mercury.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hyd.mercury.entity.User">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mnemonic_code" jdbcType="VARCHAR" property="mnemonicCode" />
+    <result column="gender" jdbcType="INTEGER" property="gender" />
+    <result column="department_uuid" jdbcType="VARCHAR" property="departmentUuid" />
+    <result column="position_uuid" jdbcType="VARCHAR" property="positionUuid" />
+    <result column="is_stop" jdbcType="INTEGER" property="isStop" />
+    <result column="login_username" jdbcType="VARCHAR" property="loginUsername" />
+    <result column="login_password" jdbcType="VARCHAR" property="loginPassword" />
+    <result column="mobilephone" jdbcType="VARCHAR" property="mobilephone" />
+    <result column="id_number" jdbcType="VARCHAR" property="idNumber" />
+    <result column="bank_card_number" jdbcType="VARCHAR" property="bankCardNumber" />
+    <result column="entry_time" jdbcType="DATE" property="entryTime" />
+    <result column="is_hidden" jdbcType="INTEGER" property="isHidden" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.hyd.mercury.entity.UserWithBLOBs">
+    <result column="id_img" jdbcType="LONGVARCHAR" property="idImg" />
+    <result column="bank_card_img" jdbcType="LONGVARCHAR" property="bankCardImg" />
+    <result column="health_certificate_img" jdbcType="LONGVARCHAR" property="healthCertificateImg" />
+    <result column="headimg" jdbcType="LONGVARCHAR" property="headimg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, code, name, mnemonic_code, gender, department_uuid, position_uuid, is_stop, 
+    login_username, login_password, mobilephone, id_number, bank_card_number, entry_time, 
+    is_hidden, remark, create_time
+  </sql>
+  <sql id="Blob_Column_List">
+    id_img, bank_card_img, health_certificate_img, headimg
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from guoshun_user
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from guoshun_user
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hyd.mercury.entity.UserWithBLOBs">
+    insert into guoshun_user (uuid, code, name, 
+      mnemonic_code, gender, department_uuid, 
+      position_uuid, is_stop, login_username, 
+      login_password, mobilephone, id_number, 
+      bank_card_number, entry_time, is_hidden, 
+      remark, create_time, id_img, 
+      bank_card_img, health_certificate_img, 
+      headimg)
+    values (#{uuid,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{mnemonicCode,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{departmentUuid,jdbcType=VARCHAR}, 
+      #{positionUuid,jdbcType=VARCHAR}, #{isStop,jdbcType=INTEGER}, #{loginUsername,jdbcType=VARCHAR}, 
+      #{loginPassword,jdbcType=VARCHAR}, #{mobilephone,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{bankCardNumber,jdbcType=VARCHAR}, #{entryTime,jdbcType=DATE}, #{isHidden,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{idImg,jdbcType=LONGVARCHAR}, 
+      #{bankCardImg,jdbcType=LONGVARCHAR}, #{healthCertificateImg,jdbcType=LONGVARCHAR}, 
+      #{headimg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.mercury.entity.UserWithBLOBs">
+    insert into guoshun_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="departmentUuid != null">
+        department_uuid,
+      </if>
+      <if test="positionUuid != null">
+        position_uuid,
+      </if>
+      <if test="isStop != null">
+        is_stop,
+      </if>
+      <if test="loginUsername != null">
+        login_username,
+      </if>
+      <if test="loginPassword != null">
+        login_password,
+      </if>
+      <if test="mobilephone != null">
+        mobilephone,
+      </if>
+      <if test="idNumber != null">
+        id_number,
+      </if>
+      <if test="bankCardNumber != null">
+        bank_card_number,
+      </if>
+      <if test="entryTime != null">
+        entry_time,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="idImg != null">
+        id_img,
+      </if>
+      <if test="bankCardImg != null">
+        bank_card_img,
+      </if>
+      <if test="healthCertificateImg != null">
+        health_certificate_img,
+      </if>
+      <if test="headimg != null">
+        headimg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonicCode != null">
+        #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="departmentUuid != null">
+        #{departmentUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="positionUuid != null">
+        #{positionUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null">
+        #{isStop,jdbcType=INTEGER},
+      </if>
+      <if test="loginUsername != null">
+        #{loginUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNumber != null">
+        #{bankCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="entryTime != null">
+        #{entryTime,jdbcType=DATE},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="idImg != null">
+        #{idImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bankCardImg != null">
+        #{bankCardImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="healthCertificateImg != null">
+        #{healthCertificateImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="headimg != null">
+        #{headimg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.mercury.entity.UserWithBLOBs">
+    update guoshun_user
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="departmentUuid != null">
+        department_uuid = #{departmentUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="positionUuid != null">
+        position_uuid = #{positionUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null">
+        is_stop = #{isStop,jdbcType=INTEGER},
+      </if>
+      <if test="loginUsername != null">
+        login_username = #{loginUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null">
+        login_password = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="mobilephone != null">
+        mobilephone = #{mobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null">
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bankCardNumber != null">
+        bank_card_number = #{bankCardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="entryTime != null">
+        entry_time = #{entryTime,jdbcType=DATE},
+      </if>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="idImg != null">
+        id_img = #{idImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="bankCardImg != null">
+        bank_card_img = #{bankCardImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="healthCertificateImg != null">
+        health_certificate_img = #{healthCertificateImg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="headimg != null">
+        headimg = #{headimg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hyd.mercury.entity.UserWithBLOBs">
+    update guoshun_user
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      department_uuid = #{departmentUuid,jdbcType=VARCHAR},
+      position_uuid = #{positionUuid,jdbcType=VARCHAR},
+      is_stop = #{isStop,jdbcType=INTEGER},
+      login_username = #{loginUsername,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      mobilephone = #{mobilephone,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bank_card_number = #{bankCardNumber,jdbcType=VARCHAR},
+      entry_time = #{entryTime,jdbcType=DATE},
+      is_hidden = #{isHidden,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      id_img = #{idImg,jdbcType=LONGVARCHAR},
+      bank_card_img = #{bankCardImg,jdbcType=LONGVARCHAR},
+      health_certificate_img = #{healthCertificateImg,jdbcType=LONGVARCHAR},
+      headimg = #{headimg,jdbcType=LONGVARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.mercury.entity.User">
+    update guoshun_user
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      department_uuid = #{departmentUuid,jdbcType=VARCHAR},
+      position_uuid = #{positionUuid,jdbcType=VARCHAR},
+      is_stop = #{isStop,jdbcType=INTEGER},
+      login_username = #{loginUsername,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=VARCHAR},
+      mobilephone = #{mobilephone,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      bank_card_number = #{bankCardNumber,jdbcType=VARCHAR},
+      entry_time = #{entryTime,jdbcType=DATE},
+      is_hidden = #{isHidden,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectUserByParam" resultType="com.hyd.mercury.entity.UserWithBLOBs">
+	select *
+		from guoshun_user
+	where 1=1
+	<if test="user.loginUsername != null">
+		and login_username = #{user.loginUsername,jdbcType=VARCHAR}
+	</if>
+  </select>
+</mapper>

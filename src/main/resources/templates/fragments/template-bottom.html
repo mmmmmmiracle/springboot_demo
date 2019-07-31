@@ -1,0 +1,59 @@
+<template-bottom th:fragment="template-bottom"> 
+                        </div>
+                    </div>                        
+                </div>
+            </div>
+            <a href="javascript:;" class="page-quick-sidebar-toggler">
+            </a>
+        </div>
+        <footer-tpl th:replace="/fragments/footer-tpl::footer-tpl"></footer-tpl>
+    </div>
+    
+<script-tpl th:replace="/fragments/script-tpl::script-tpl"></script-tpl>
+<script type="text/javascript">
+    function sortarr(array,field){
+        for(g=0;g<array.length-1;g++){
+            for(k=0;k<array.length-1-g;k++){
+                if(array[k].code > array[k+1].code){
+                    var temp=array[k];
+                    array[k]=array[k+1];
+                    array[k+1]=temp;
+                }
+            }
+        }
+        return array;
+    }
+</script>
+<script th:inline="javascript">
+/*<![CDATA[*/
+    var sideBarHTMLCode = /*[[${sideBarHTMLCode}]]*/;
+    var moduleList = eval('(' + sideBarHTMLCode + ')');
+    var html = '';
+    var selectedModuleUUID = $.cookie('SELECTED_MODULE_UUID');
+    var selectedAuthorityUUID = $.cookie('SELECTED_AUTHORITY_UUID');
+    var j = moduleList.length;
+	
+    for(i=0;i<j;i++){
+    	if(moduleList[i].authorityList != null){
+    		html += '<li class="nav-item '+(moduleList[i].uuid==selectedModuleUUID?'active open':'')+'"><a href="javascript:;" class="nav-link nav-toggle" data-uuid="'+moduleList[i].uuid+'"><i class="'+moduleList[i].iconName+'"></i><span class="title"> '+moduleList[i].name+'</span><span class="arrow"></span></a>';
+            html += '<ul class="sub-menu">';
+
+            var userAuthorityList = moduleList[i].authorityList;
+            var n = userAuthorityList.length;
+            authorityList = sortarr(userAuthorityList,"code");
+            for(m=0;m<n;m++){
+                if (authorityList[m].isDisplay == 1) {
+                    html += '<li class="nav-item start"><a href="javascript:;" data-link="'+authorityList[m].link+'" data-uuid="'+authorityList[m].uuid+'" class="nav-link sec-lv '+(authorityList[m].uuid==selectedAuthorityUUID?'active':'')+'"><i class="icon-list"></i><span class="title"> '+authorityList[m].authName+'</span></a></li>';
+                }
+            }
+
+            html += '</ul>';                    
+            html += '</li>';
+    	}
+    }
+    $("#sidebar").append(html);
+/*]]>*/
+</script>
+</body>
+</html>
+</template-bottom>

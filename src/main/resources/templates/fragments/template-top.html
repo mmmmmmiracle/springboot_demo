@@ -1,0 +1,34 @@
+<template-top th:fragment="template-top"> 
+
+<!DOCTYPE html>
+
+<head-tpl th:replace="/fragments/head-tpl::head-tpl"></head-tpl>
+
+<body class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+    <div class="page-wrapper">
+
+        <header-tpl th:replace="/fragments/header-tpl::header-tpl"></header-tpl>
+        
+        <div class="page-container">
+
+            <div class="page-sidebar-wrapper">
+
+                <div class="page-sidebar navbar-collapse collapse">
+
+                    <ul class="page-sidebar-menu page-header-fixed" id="sidebar" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                        <li class="user-information user-information-higher">
+                            <img alt="" id="headimg" class="img-circle img-circle-big" th:attr="src=${HEADIMG}"/>
+                            <span class="user-welcome"> 欢迎您使用! </span>
+                            <span class="user-name" th:text="${USERNAME}"> 系统用户 </span>
+                        </li>
+                        <!-- <div th:text="${sideBarHTMLCode}"></div> -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    <div class="row">
+                        <div class="col-md-12">
+                        
+</template-top>

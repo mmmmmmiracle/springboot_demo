@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+/*.printed-bill .certificate-right-border-2px,
+.printed-bill table tbody td{
+	border-color: #FFF!important;
+}
+.printed-bill .factory-name,
+.printed-bill .certificate-body-table-head,
+.printed-bill .certificate-hidden{
+	visibility:hidden;
+}
+.printed-bill .certificate-head-title{
+	font-weight: bold;
+	font-size: 22px
+}*/
+.sales-order .sales-order-head,
+.sales-order .sales-order-body .sales-order-body-title,
+.sales-order .sales-order-foot,
+.sales-order .sales-order-body .sales-order-payment-method,
+.sales-order .sales-order-body .sales-order-notice,
+.sales-order .sales-order-body .sales-order-body-body div{
+	visibility: hidden;
+}
+.sales-order .sales-order-head .customer_name,
+.sales-order .sales-order-body .sales-order-body-body span,
+.sales-order .sales-order-body .sales-order-payment-method .square p,
+.sales-order .sales-order-foot .draw-time{
+	visibility: initial;
+}
+.sales-order .sales-order-body-body .height7-5mm .total{
+	visibility: hidden;
+}

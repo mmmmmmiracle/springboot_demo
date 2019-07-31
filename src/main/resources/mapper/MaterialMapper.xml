@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyd.mercury.dao.MaterialMapper">
+  <resultMap id="BaseResultMap" type="com.hyd.mercury.entity.Material">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="mnemonic_code" jdbcType="VARCHAR" property="mnemonicCode" />
+    <result column="material_type" jdbcType="TINYINT" property="materialType" />
+    <result column="is_stop" jdbcType="TINYINT" property="isStop" />
+    <result column="quantity_unit" jdbcType="VARCHAR" property="quantityUnit" />
+    <result column="execution_standard" jdbcType="VARCHAR" property="executionStandard" />
+    <result column="is_hidden" jdbcType="TINYINT" property="isHidden" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="create_time" jdbcType="INTEGER" property="createTime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, code, name, mnemonic_code, material_type, is_stop, quantity_unit, execution_standard, 
+    is_hidden, remark, create_time, type
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from guoshun_material
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from guoshun_material
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hyd.mercury.entity.Material">
+    insert into guoshun_material (uuid, code, name, 
+      mnemonic_code, material_type, is_stop, 
+      quantity_unit, execution_standard, is_hidden, 
+      remark, create_time, type
+      )
+    values (#{uuid,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{mnemonicCode,jdbcType=VARCHAR}, #{materialType,jdbcType=TINYINT}, #{isStop,jdbcType=TINYINT}, 
+      #{quantityUnit,jdbcType=VARCHAR}, #{executionStandard,jdbcType=VARCHAR}, #{isHidden,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.mercury.entity.Material">
+    insert into guoshun_material
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code,
+      </if>
+      <if test="materialType != null">
+        material_type,
+      </if>
+      <if test="isStop != null">
+        is_stop,
+      </if>
+      <if test="quantityUnit != null">
+        quantity_unit,
+      </if>
+      <if test="executionStandard != null">
+        execution_standard,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonicCode != null">
+        #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        #{materialType,jdbcType=TINYINT},
+      </if>
+      <if test="isStop != null">
+        #{isStop,jdbcType=TINYINT},
+      </if>
+      <if test="quantityUnit != null">
+        #{quantityUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="executionStandard != null">
+        #{executionStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.mercury.entity.Material">
+    update guoshun_material
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mnemonicCode != null">
+        mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      </if>
+      <if test="materialType != null">
+        material_type = #{materialType,jdbcType=TINYINT},
+      </if>
+      <if test="isStop != null">
+        is_stop = #{isStop,jdbcType=TINYINT},
+      </if>
+      <if test="quantityUnit != null">
+        quantity_unit = #{quantityUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="executionStandard != null">
+        execution_standard = #{executionStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.mercury.entity.Material">
+    update guoshun_material
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      mnemonic_code = #{mnemonicCode,jdbcType=VARCHAR},
+      material_type = #{materialType,jdbcType=TINYINT},
+      is_stop = #{isStop,jdbcType=TINYINT},
+      quantity_unit = #{quantityUnit,jdbcType=VARCHAR},
+      execution_standard = #{executionStandard,jdbcType=VARCHAR},
+      is_hidden = #{isHidden,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=INTEGER},
+      type = #{type,jdbcType=VARCHAR}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyd.mercury.dao.ModuleMapper">
+  <resultMap id="BaseResultMap" type="com.hyd.mercury.entity.Module">
+    <id column="uuid" jdbcType="VARCHAR" property="uuid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="sort" jdbcType="INTEGER" property="sort" />
+    <result column="icon_name" jdbcType="VARCHAR" property="iconName" />
+    <result column="is_stop" jdbcType="INTEGER" property="isStop" />
+    <result column="is_hidden" jdbcType="INTEGER" property="isHidden" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    uuid, name, sort, icon_name, is_stop, is_hidden
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from guoshun_module
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from guoshun_module
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hyd.mercury.entity.Module">
+    insert into guoshun_module (uuid, name, sort, 
+      icon_name, is_stop, is_hidden)
+    values (#{uuid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{iconName,jdbcType=VARCHAR}, #{isStop,jdbcType=INTEGER}, #{isHidden,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hyd.mercury.entity.Module">
+    insert into guoshun_module
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        uuid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="sort != null">
+        sort,
+      </if>
+      <if test="iconName != null">
+        icon_name,
+      </if>
+      <if test="isStop != null">
+        is_stop,
+      </if>
+      <if test="isHidden != null">
+        is_hidden,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uuid != null">
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="iconName != null">
+        #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null">
+        #{isStop,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        #{isHidden,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hyd.mercury.entity.Module">
+    update guoshun_module
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null">
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="iconName != null">
+        icon_name = #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="isStop != null">
+        is_stop = #{isStop,jdbcType=INTEGER},
+      </if>
+      <if test="isHidden != null">
+        is_hidden = #{isHidden,jdbcType=INTEGER},
+      </if>
+    </set>
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hyd.mercury.entity.Module">
+    update guoshun_module
+    set name = #{name,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      icon_name = #{iconName,jdbcType=VARCHAR},
+      is_stop = #{isStop,jdbcType=INTEGER},
+      is_hidden = #{isHidden,jdbcType=INTEGER}
+    where uuid = #{uuid,jdbcType=VARCHAR}
+  </update>
+   <select id="selectModuleByParam" parameterType="com.hyd.mercury.entity.Module" resultType="com.hyd.mercury.vo.UserAuthorityVo">
+    select 
+    <include refid="Base_Column_List" />
+    from guoshun_module
+    where 1=1
+    <if test="isStop != null">
+    	and is_stop = #{isStop,jdbcType=INTEGER}
+    </if>
+    <if test="isHidden != null">
+    	and is_hidden = #{isHidden,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>
